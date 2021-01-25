@@ -199,6 +199,43 @@ td.expense {
     padding: 2.4rem;
 }
 
+/* Form -----------------*/
+#form {
+    max-width: 500px;
+}
+
+#form h2 {
+    margin-top: 0;
+}
+
+input {
+    border: none;
+    border-radius: 0.2rem;
+
+    padding: 0.8rem;
+
+    width: 100%;
+}
+
+.input-group {
+    margin-top: 0.8rem;
+}
+
+.input-group small {
+    opacity: 0.4;
+}
+
+.input-group.action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-group.action .button,
+.input-group.action button {
+    width: 48%;
+}
+
 /* Footer -----------------*/
 footer {
     text-align: center;
