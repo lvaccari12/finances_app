@@ -11,38 +11,38 @@ const Modal = {
     }
 }
 
-const transactions = [
-    {
-        id: 1,
-        description: 'Luz',
-        amount: -50000,
-        date: '21/01/2021'
-    },
-    {
-        id: 2,
-        description: 'Website',
-        amount: 500000,
-        date: '21/01/2021'
-    },
-    {
-        id: 3,
-        description: 'Internet',
-        amount: -20000,
-        date: '21/01/2021'
-    },
-    {
-        id: 4,
-        description: 'App',
-        amount: 200000,
-        date: '21/01/2021'
-    },
-]
-
 const Transaction = {
-    all: transactions,
+    all: [
+        {
+            description: 'Luz',
+            amount: -50000,
+            date: '21/01/2021'
+        },
+        {
+            description: 'Website',
+            amount: 500000,
+            date: '21/01/2021'
+        },
+        {
+            description: 'Internet',
+            amount: -20000,
+            date: '21/01/2021'
+        },
+        {
+            description: 'App',
+            amount: 200000,
+            date: '21/01/2021'
+        },
+    ],
 
     add(transaction){
         Transaction.all.push(transaction)
+
+        App.reload()
+    },
+
+    remove(index) {
+        Transaction.all.splice(index, 1)
 
         App.reload()
     },
@@ -144,6 +144,49 @@ const Utils = {
     }
 }
 
+const Form = {
+    description: document.querySelector('input#description'),
+    amount: document.querySelector('input#amount'),
+    date: document.querySelector('input#date'),
+
+    getValues() {
+        return {
+            description: Form.description.value,
+            amount: Form.amount.value,
+            date: Form.date.value
+        }
+    },
+
+    validateFields() {
+        const { description, amount, date } = Form.getValues()
+
+        // verificar se todas as informacoes foram preenchidas
+        if( description.trim() === "" ||
+            amount.trim() === "" ||
+            date.trim() === "" ) {
+                throw new Error("Por favor, preencha todos os campos")
+        }
+    },
+
+    submit(event) {
+        event.preventDefault()
+
+
+        try {
+            Form.validateFields()
+            // formatar os dados para salvar
+            // Form.formatData()
+            // salvar
+            // apagar os dados do formulario
+            // modal feche
+            // atualizar a aplicacao
+        } catch (error) {
+            alert(error.message)
+        }
+
+    }
+}
+
 const App = {
     init() {
 
@@ -162,11 +205,3 @@ const App = {
 
 App.init()
 
-
-
-Transaction.add({
-    id: 39,
-    description: 'Alo',
-    amount: 200,
-    date: '23/01/2021'
-})
